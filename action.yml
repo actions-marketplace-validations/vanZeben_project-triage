@@ -1,0 +1,22 @@
+name: 'project-triage'
+description: 'Triages issues and PRs into a GitHub Project'
+branding: 
+  icon: 'table'
+  color: 'purple'
+inputs:
+  token:
+    description: >
+      Personal access token (PAT) used to access the project. 
+      Also when generating a new PAT, select the least scopes necessary [project, read-project]. 
+      [Learn more about creating and using encrypted secrets](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-and-using-encrypted-secrets)
+    default: ${{ github.token }}
+  projectOwner:
+    description: 'Organization or User who owns the Project to triage this Repository'
+    default: ${{ github.repository_owner }}
+  projectName:
+    description: 'Desired name for the project board'
+    default: Triage Board
+runs:
+  using: node16
+  main: lib/index.js
+  post: lib/index.js
