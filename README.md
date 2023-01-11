@@ -28,7 +28,26 @@ GitHub's present Project API is quite limited, so presently, after you setup the
     # Default: OSS Triage Board
     projectName: ''
 ```
-<!-- end usage -->
+
+
+# Example Workflow
+```yaml
+name: Triage
+
+# Run a triage on the current repository once a day at 7am GMT
+# The project will exist under the owner of the current repository
+on:
+  schedule:
+    - cron: "0 7 * * *"
+
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: vanZeben/project-triage@v1
+      with:
+        token: ${{ secrets.GH_TOKEN }}
+ ```
 
 
 # License
